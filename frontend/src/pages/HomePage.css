@@ -1,0 +1,83 @@
+/* src/components/HomePage.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Estilos generales de la página */
+.landing-page {
+  font-family: 'Times New Roman', Times, serif; /* O la fuente que uses en Figma */
+  background-color: #e6e0d9; /* Color de fondo */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea los elementos al principio */
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 10vh; /* Espacio superior para el encabezado */
+}
+
+/* Estilos para el encabezado */
+.header {
+  margin-bottom: 50px;
+}
+
+.main-title {
+  font-size: 48px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 10px 0 0 0;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+/* Estilos para el contenedor de bienvenida */
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.welcome-box {
+  background-color: #273043; /* Color del recuadro oscuro */
+  color: white;
+  padding: 40px 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px; /* Ancho fijo para el recuadro */
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px; /* Espacio entre botones */
+  border-radius: 4px;
+  border: none;
+  background-color: #e6e0d9; /* Color de los botones */
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #d1c8be; /* Un color ligeramente más oscuro al pasar el ratón */
+}
