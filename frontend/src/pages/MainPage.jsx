@@ -1,6 +1,6 @@
 // src/components/HomePage.js
 import React, { useState, useEffect } from 'react';
-import './MainPage.css';
+import './MainPage.css'; 
 import { FaUserCircle, FaSearch, FaStar, FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -37,7 +37,7 @@ const HomePage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [username, setUsername] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]); // Nuevo estado para los resultados del buscador
+    const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
 
     // Lógica de "debouncing" para el buscador
@@ -57,12 +57,12 @@ const HomePage = () => {
                 console.error("Error fetching search results:", error);
                 setSearchResults([]);
             }
-        }, 500); // 500 ms de retraso
+        }, 500);
 
         return () => clearTimeout(delayDebounceFn);
     }, [searchTerm]);
 
-    // Función para obtener los libros populares (sin cambios)
+    // Lógica para obtener libros populares y reseñas del usuario
     useEffect(() => {
         const fetchPopularBooks = async () => {
             const genres = ['fantasy', 'science fiction', 'biography', 'history', 'thriller', 'mystery'];
@@ -142,7 +142,7 @@ const HomePage = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <FaSearch className="search-icon" />
-                        {searchResults.length > 0 && (
+                        {searchResults && searchResults.length > 0 && (
                             <ul className="search-results-dropdown">
                                 {searchResults.map((book) => (
                                     <li key={book.id}>
@@ -166,7 +166,6 @@ const HomePage = () => {
                                         <Link to="/my-reviews">
                                             <button>VER MIS RESEÑAS</button>
                                         </Link>
-                                        <button className="change-session">CAMBIAR SESIÓN</button>
                                         <button onClick={handleLogout} className="logout-button">CERRAR SESIÓN</button>
                                     </div>
                                 </div>
@@ -187,7 +186,9 @@ const HomePage = () => {
                                         <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                                     </div>
                                     <h3 className="book-title">{book.volumeInfo.title}</h3>
+                                    
                                     {renderStars(book.volumeInfo.averageRating || 0)}
+                                    
                                 </div>
                             ))
                         ) : (
@@ -205,8 +206,10 @@ const HomePage = () => {
                             userReviews.map((review) => (
                                 <div key={review.id} className="review-card">
                                     <h3 className="book-title">{review.book.title}</h3>
+                                    <div className="rating">
+                                        {renderStars(review.rating)}
+                                    </div>
                                     <p>{review.comment}</p>
-                                    {renderStars(review.rating)}
                                 </div>
                             ))
                         ) : (
@@ -223,7 +226,7 @@ const HomePage = () => {
                     <FaTwitter />
                 </div>
                 <div className="copyright">
-                    <p>&copy; 2024 The Reading Nook. Todos los derechos reservados.</p>
+                    <p>&copy; 2025 The Reading Nook. Todos los derechos reservados.</p>
                 </div>
             </footer>
         </div>
