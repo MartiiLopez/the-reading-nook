@@ -1,0 +1,342 @@
+/* src/components/HomePage.css */
+
+/* Estilos generales de la página */
+.home-page-container {
+    font-family: 'Times New Roman', serif;
+    background-color: #e6e0d9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #273043;
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-name {
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e6e0d9;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.search-bar input {
+    border: none;
+    padding: 8px 15px;
+    outline: none;
+    color: #333;
+}
+
+.search-bar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 10px;
+    color: #333;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.user-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #273043;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.dropdown-menu button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-menu button:hover {
+    background-color: #3f4757;
+}
+
+/* Contenido principal */
+.content {
+    flex-grow: 1;
+    padding: 50px;
+    text-align: center;
+}
+
+.books-section, .user-reviews-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.book-cards-container, .review-cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Modificaciones para las tarjetas */
+.book-card, .review-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    /* Usa Flexbox para alinear el contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-image-container {
+    flex-grow: 1; /* Esto hace que la imagen ocupe el espacio disponible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.rating-container {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 5px;
+}
+
+.star.filled {
+    color: gold;
+}
+
+.star.half-filled {
+    color: gold;
+}
+
+.star.empty {
+    color: lightgray;
+}
+
+.no-reviews-message {
+    font-size: 20px;
+    color: #555;
+    margin-top: 20px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 50px 0;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #273043;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons svg {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* src/components/HomePage.css */
+
+/* ... (El resto de tus estilos) */
+
+.profile-menu {
+    position: relative;
+    z-index: 100; /* Asegura que el menú esté encima de otros elementos */
+}
+
+.user-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Estilos de la cortina semi-transparente */
+.sidebar-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ancho completo de la ventana */
+    height: 100vh; /* Alto completo de la ventana */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+    z-index: 99; /* Detrás del sidebar, pero encima del resto */
+}
+
+/* Estilos para la barra lateral */
+.user-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px; /* Ancho de la barra lateral */
+    height: 100vh;
+    background-color: #273043;
+    padding: 20px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 100;
+    transform: translateX(0); /* Posición inicial */
+    transition: transform 0.3s ease-in-out; /* Animación de entrada y salida */
+}
+
+.user-sidebar.closed {
+    transform: translateX(100%); /* Posición cuando está cerrado */
+}
+
+.sidebar-header {
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-user-icon {
+    font-size: 60px;
+}
+
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-buttons button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    color: #333;
+}
+
+.sidebar-buttons .change-session {
+    background-color: #e6e0d9;
+}
+
+.sidebar-buttons .logout-button {
+    background-color: #555;
+    color: white;
+}
+
+/* src/components/HomePage.css */
+/* ... (el resto de tu CSS) */
+
+.search-bar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e6e0d9;
+    border-radius: 20px;
+    background-color: white;
+    width: 300px;
+}
+
+.search-bar-container input {
+    width: 100%;
+    border: none;
+    padding: 8px 15px;
+    outline: none;
+    color: #333;
+    background-color: transparent;
+}
+
+.search-icon {
+    margin-right: 15px;
+    color: #333;
+}
+
+.search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    z-index: 50;
+    color: #333;
+}
+
+.search-results-dropdown li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.search-results-dropdown li:hover {
+    background-color: #f0f0f0;
+}

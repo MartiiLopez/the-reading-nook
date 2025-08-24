@@ -27,7 +27,7 @@ function LoginForm() {
 
       setMessage('Inicio de sesión exitoso. Serás redirigido.');
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/main');
       }, 2000);
     } catch (error) {
       setMessage('Credenciales incorrectas. Inténtalo de nuevo.');
