@@ -1,15 +1,26 @@
 // src/components/Header.js
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
-import SearchBar from './SearchBar'; // Importa el nuevo componente
+import SearchBar from './SearchBar'; 
 import '../pages/MainPage.css';
 
-const Header = ({ username, isMenuOpen, toggleMenu, handleLogout }) => {
+const Header = ({ username, handleLogout }) => {
+    // La lógica del estado del sidebar se mueve aquí
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <header className="navbar">
-            <div className="brand-name">THE READING NOOK</div>
+            <div className="brand-name">
+                <Link to="/main">
+                    THE READING NOOK
+                </Link>
+                </div>
             <div className="nav-right">
                 <SearchBar />
                 <div className="profile-menu">

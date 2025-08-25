@@ -2,7 +2,7 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import BookViewSet, UserViewSet, MyReviewsViewSet, RegistrationView, UserDetailView, BookReviewsView
+from .views import BookViewSet, UserViewSet, MyReviewsViewSet, RegistrationView, UserDetailView, BookReviewsView, ReviewCreateView
 
 router = DefaultRouter()
 router.register(r'books', BookViewSet)
@@ -14,4 +14,5 @@ urlpatterns = [
     path('user/', UserDetailView.as_view(), name='user_details'),
     path('reviews/<str:isbn>/', BookReviewsView.as_view(), name='book_reviews'),
     path('', include(router.urls)),
+    path('reviews/', ReviewCreateView.as_view(), name='review_create'),
 ]

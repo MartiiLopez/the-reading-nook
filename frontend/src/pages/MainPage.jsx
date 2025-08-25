@@ -32,9 +32,32 @@ const renderStars = (rating) => {
 const HomePage = () => {
     const [popularBooks, setPopularBooks] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [username, setUsername] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
+
+    // Lógica de "debouncing" para el buscador
+    useEffect(() => {
+        if (searchTerm.trim() === '') {
+            setSearchResults([]);
+            return;
+        }
+
+        const delayDebounceFn = setTimeout(async () => {
+            try {
+                const response = await axios.get(
+                    `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=4`
+                );
+                setSearchResults(response.data.items);
+            } catch (error) {
+                console.error("Error fetching search results:", error);
+                setSearchResults([]);
+            }
+        }, 500);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm]);
 
     useEffect(() => {
         const fetchPopularBooks = async () => {
@@ -92,10 +115,6 @@ const HomePage = () => {
         fetchUserDetails();
     }, []);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
     const handleLogout = () => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('refreshToken');
@@ -106,8 +125,6 @@ const HomePage = () => {
         <div className="home-page-container">
             <Header
                 username={username}
-                isMenuOpen={isMenuOpen}
-                toggleMenu={toggleMenu}
                 handleLogout={handleLogout}
             />
 

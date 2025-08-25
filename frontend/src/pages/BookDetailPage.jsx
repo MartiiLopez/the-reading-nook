@@ -49,7 +49,6 @@ const BookDetailPage = () => {
                     const reviewsResponse = await axios.get(`http://localhost:8000/app/reviews/${isbn}`);
                     setReviews(reviewsResponse.data);
                 }
-
             } catch (err) {
                 setError("No se pudo cargar la información del libro.");
                 console.error(err);
@@ -63,9 +62,19 @@ const BookDetailPage = () => {
         }
     }, [bookId]);
 
-    if (loading) return <div className="loading">Cargando...</div>;
-    if (error) return <div className="error">{error}</div>;
-    if (!book) return <div className="not-found">Libro no encontrado.</div>;
+    const handleReviewButtonClick = () => {
+        const isbn = book.volumeInfo.industryIdentifiers?.find(id => id.type === 'ISBN_13' || id.type === 'ISBN_10')?.identifier;
+        if (isbn) {
+            navigate(`/review/${isbn}`);
+        } else {
+            // Manejar el caso en que el libro no tenga ISBN
+            alert("Este libro no tiene un ISBN válido para hacer una reseña.");
+        }
+    };
+
+    if (loading) return <div>Cargando...</div>;
+    if (error) return <div>{error}</div>;
+    if (!book) return <div>Libro no encontrado.</div>;
 
     const synopsis = book.volumeInfo.description;
     const rating = book.volumeInfo.averageRating || 0;
@@ -79,15 +88,11 @@ const BookDetailPage = () => {
                         <div className="left-column">
                             <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                             {renderStars(rating)}
-                            <button className="review-button">DEJA TU RESEÑA</button>
+                            <button onClick={handleReviewButtonClick} className="review-button">DEJA TU RESEÑA</button>
                         </div>
                         <div className="right-column">
                             <h2>{book.volumeInfo.title}</h2>
-                            {synopsis ? (
-                                <p className="synopsis">{synopsis}</p>
-                            ) : (
-                                <p className="synopsis">Sinopsis no disponible.</p>
-                            )}
+                            <p className="synopsis">{synopsis}</p>
                         </div>
                     </div>
                 </header>

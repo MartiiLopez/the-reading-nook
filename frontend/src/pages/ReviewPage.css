@@ -1,0 +1,126 @@
+/* src/components/ReviewPage.css */
+
+.review-page-container {
+    font-family: 'Times New Roman', serif;
+    background-color: #e6e0d9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.review-form-header {
+    background-color: #f7f3ed;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 600px;
+    text-align: center;
+}
+
+.review-form-header h2 {
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.review-form {
+    background-color: #f7f3ed;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 40px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.form-info img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.form-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.form-details h3 {
+    font-size: 24px;
+}
+
+.rating-section p {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.rating-section .rating-container {
+    justify-content: flex-start;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+
+.form-group p {
+    font-weight: bold;
+}
+
+.form-group textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button {
+    background-color: #4d5d71;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #3f4757;
+}
+
+.cancel-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background-color: #bbb;
+}

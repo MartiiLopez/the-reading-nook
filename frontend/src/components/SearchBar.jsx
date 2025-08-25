@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+import '../pages/MainPage.css';
 
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');

@@ -108,7 +108,8 @@
 /* Estilos para la lista de reseñas */
 .reviews-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px;
 }

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import Book, User, Review
-from .serializers import BookSerializer, UserSerializer, ReviewSerializer, RegistrationSerializer
+from .serializers import BookSerializer, UserSerializer, ReviewSerializer, RegistrationSerializer, ReviewCreateSerializer
 from rest_framework import generics
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -58,3 +58,11 @@ class BookReviewsView(generics.ListAPIView):
         # Filtra las reseñas por el ISBN
         isbn = self.kwargs['isbn']
         return Review.objects.filter(book__isbn=isbn)
+
+class ReviewCreateView(generics.CreateAPIView):
+    serializer_class = ReviewCreateSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        # El serializador ya maneja la creación del libro y la reseña
+        serializer.save()

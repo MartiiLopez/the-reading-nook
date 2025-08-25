@@ -21,9 +21,11 @@
     align-items: center;
 }
 
-.brand-name {
+.brand-name a {
     font-size: 24px;
     letter-spacing: 2px;
+    text-decoration: none; /* Esto quita el subrayado */
+    color: inherit;
 }
 
 .nav-right {
@@ -59,7 +61,6 @@
 
 /* Estilos para el dropdown del buscador */
 .search-results-dropdown {
-    text-decoration: none;
     position: absolute;
     top: 100%; /* Se posiciona justo debajo del input */
     left: 0;
@@ -78,6 +79,11 @@
     padding: 10px 15px;
     cursor: pointer;
     border-bottom: 1px solid #eee;
+}
+
+.search-results-dropdown a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .search-results-dropdown li:hover {
@@ -186,6 +192,9 @@
     flex-wrap: wrap;
     gap: 30px;
 }
+.book-cards-container .book-card a .book-title{
+    text-decoration: none;
+}
 
 /* Modificaciones para las tarjetas */
 .book-card, .review-card {
@@ -214,6 +223,8 @@
 }
 
 .book-title {
+     text-decoration: none;
+    color: inherit;
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
