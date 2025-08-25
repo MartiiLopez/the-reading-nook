@@ -1,28 +1,26 @@
 // src/components/HomePage.js
+
 import React, { useState, useEffect } from 'react';
-import './MainPage.css'; 
-import { FaUserCircle, FaSearch, FaStar, FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa';
-import { FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
+import './MainPage.css';
+import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
 
-// Función para renderizar las estrellas de forma dinámica
 const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
 
-    // Estrellas completas
     for (let i = 0; i < fullStars; i++) {
         stars.push(<FaStar key={`full-${i}`} className="star filled" />);
     }
 
-    // Media estrella (si aplica)
     if (hasHalfStar) {
         stars.push(<FaStarHalfAlt key="half" className="star half-filled" />);
     }
 
-    // Estrellas vacías
     const remainingStars = 5 - stars.length;
     for (let i = 0; i < remainingStars; i++) {
         stars.push(<FaRegStar key={`empty-${i}`} className="star empty" />);
@@ -36,33 +34,8 @@ const HomePage = () => {
     const [userReviews, setUserReviews] = useState([]);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [username, setUsername] = useState('');
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
 
-    // Lógica de "debouncing" para el buscador
-    useEffect(() => {
-        if (searchTerm.trim() === '') {
-            setSearchResults([]);
-            return;
-        }
-
-        const delayDebounceFn = setTimeout(async () => {
-            try {
-                const response = await axios.get(
-                    `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=5`
-                );
-                setSearchResults(response.data.items);
-            } catch (error) {
-                console.error("Error fetching search results:", error);
-                setSearchResults([]);
-            }
-        }, 500);
-
-        return () => clearTimeout(delayDebounceFn);
-    }, [searchTerm]);
-
-    // Lógica para obtener libros populares y reseñas del usuario
     useEffect(() => {
         const fetchPopularBooks = async () => {
             const genres = ['fantasy', 'science fiction', 'biography', 'history', 'thriller', 'mystery'];
@@ -131,49 +104,12 @@ const HomePage = () => {
 
     return (
         <div className="home-page-container">
-            <header className="navbar">
-                <div className="brand-name">THE READING NOOK</div>
-                <div className="nav-right">
-                    <div className="search-bar-container">
-                        <input
-                            type="text"
-                            placeholder="Buscar libro..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <FaSearch className="search-icon" />
-                        {searchResults && searchResults.length > 0 && (
-                            <ul className="search-results-dropdown">
-                                {searchResults.map((book) => (
-                                    <li key={book.id}>
-                                        <p>{book.volumeInfo.title}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                    <div className="profile-menu">
-                        <FaUserCircle className="user-icon" onClick={toggleMenu} />
-                        {isMenuOpen && (
-                            <>
-                                <div className="sidebar-curtain" onClick={toggleMenu}></div>
-                                <div className="user-sidebar">
-                                    <div className="sidebar-header">
-                                        <FaUserCircle className="sidebar-user-icon" />
-                                        <p>¡Hola, {username}!</p>
-                                    </div>
-                                    <div className="sidebar-buttons">
-                                        <Link to="/my-reviews">
-                                            <button>VER MIS RESEÑAS</button>
-                                        </Link>
-                                        <button onClick={handleLogout} className="logout-button">CERRAR SESIÓN</button>
-                                    </div>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </header>
+            <Header
+                username={username}
+                isMenuOpen={isMenuOpen}
+                toggleMenu={toggleMenu}
+                handleLogout={handleLogout}
+            />
 
             <main className="content">
                 <section className="books-section">
@@ -181,15 +117,15 @@ const HomePage = () => {
                     <div className="book-cards-container">
                         {popularBooks.length > 0 ? (
                             popularBooks.map((book) => (
-                                <div key={book.id} className="book-card">
-                                    <div className="book-image-container">
-                                        <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
+                                <Link to={`/book/${book.id}`} key={book.id}>
+                                    <div className="book-card">
+                                        <div className="book-image-container">
+                                            <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
+                                        </div>
+                                        <h3 className="book-title">{book.volumeInfo.title}</h3>
+                                        {renderStars(book.volumeInfo.averageRating || 0)}
                                     </div>
-                                    <h3 className="book-title">{book.volumeInfo.title}</h3>
-                                    
-                                    {renderStars(book.volumeInfo.averageRating || 0)}
-                                    
-                                </div>
+                                </Link>
                             ))
                         ) : (
                             <p>Cargando libros...</p>
@@ -206,10 +142,8 @@ const HomePage = () => {
                             userReviews.map((review) => (
                                 <div key={review.id} className="review-card">
                                     <h3 className="book-title">{review.book.title}</h3>
-                                    <div className="rating">
-                                        {renderStars(review.rating)}
-                                    </div>
                                     <p>{review.comment}</p>
+                                    {renderStars(review.rating)}
                                 </div>
                             ))
                         ) : (
@@ -219,16 +153,7 @@ const HomePage = () => {
                 </section>
             </main>
 
-            <footer className="footer">
-                <div className="social-icons">
-                    <FaInstagram />
-                    <FaFacebookF />
-                    <FaTwitter />
-                </div>
-                <div className="copyright">
-                    <p>&copy; 2025 The Reading Nook. Todos los derechos reservados.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };

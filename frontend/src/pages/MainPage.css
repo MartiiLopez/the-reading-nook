@@ -2,6 +2,7 @@
 
 /* Estilos generales de la página */
 .home-page-container {
+    text-decoration: none;
     font-family: 'Times New Roman', serif;
     background-color: #e6e0d9;
     color: #333;
@@ -31,32 +32,62 @@
     gap: 20px;
 }
 
-.search-bar {
+/* Contenedor del buscador (con posición relativa para el dropdown) */
+.search-bar-container {
+    position: relative;
     display: flex;
     align-items: center;
     border: 1px solid #e6e0d9;
     border-radius: 20px;
-    overflow: hidden;
     background-color: white;
+    width: 300px;
 }
 
-.search-bar input {
+.search-bar-container input {
+    width: 100%;
     border: none;
     padding: 8px 15px;
     outline: none;
     color: #333;
+    background-color: transparent;
 }
 
-.search-bar button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px 10px;
+.search-icon {
+    margin-right: 15px;
     color: #333;
 }
 
+/* Estilos para el dropdown del buscador */
+.search-results-dropdown {
+    text-decoration: none;
+    position: absolute;
+    top: 100%; /* Se posiciona justo debajo del input */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    z-index: 50; /* Para que aparezca encima del resto del contenido */
+    color: #333;
+}
+
+.search-results-dropdown li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.search-results-dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Menú de perfil y barra lateral */
 .profile-menu {
     position: relative;
+    z-index: 100; /* Asegura que el menú esté encima de otros elementos */
 }
 
 .user-icon {
@@ -64,31 +95,72 @@
     cursor: pointer;
 }
 
-.dropdown-menu {
-    position: absolute;
-    top: 40px;
+/* Estilos de la cortina semi-transparente */
+.sidebar-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+/* Estilos para la barra lateral */
+.user-sidebar {
+    position: fixed;
+    top: 0;
     right: 0;
+    width: 300px;
+    height: 100vh;
     background-color: #273043;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    padding: 20px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    gap: 30px;
+    z-index: 100;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
 }
 
-.dropdown-menu button {
-    background: none;
-    border: none;
+.sidebar-header {
+    text-align: center;
     color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
-.dropdown-menu button:hover {
-    background-color: #3f4757;
+.sidebar-user-icon {
+    font-size: 60px;
+}
+
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-buttons button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    color: #333;
+}
+
+.sidebar-buttons .change-session {
+    background-color: #e6e0d9;
+}
+
+.sidebar-buttons .logout-button {
+    background-color: #555;
+    color: white;
 }
 
 /* Contenido principal */
@@ -123,14 +195,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 200px;
     text-align: center;
-    /* Usa Flexbox para alinear el contenido */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .book-image-container {
-    flex-grow: 1; /* Esto hace que la imagen ocupe el espacio disponible */
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,138 +272,4 @@ hr {
 .social-icons svg {
     font-size: 24px;
     cursor: pointer;
-}
-
-/* src/components/HomePage.css */
-
-/* ... (El resto de tus estilos) */
-
-.profile-menu {
-    position: relative;
-    z-index: 100; /* Asegura que el menú esté encima de otros elementos */
-}
-
-.user-icon {
-    font-size: 30px;
-    cursor: pointer;
-}
-
-/* Estilos de la cortina semi-transparente */
-.sidebar-curtain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw; /* Ancho completo de la ventana */
-    height: 100vh; /* Alto completo de la ventana */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
-    z-index: 99; /* Detrás del sidebar, pero encima del resto */
-}
-
-/* Estilos para la barra lateral */
-.user-sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px; /* Ancho de la barra lateral */
-    height: 100vh;
-    background-color: #273043;
-    padding: 20px;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    z-index: 100;
-    transform: translateX(0); /* Posición inicial */
-    transition: transform 0.3s ease-in-out; /* Animación de entrada y salida */
-}
-
-.user-sidebar.closed {
-    transform: translateX(100%); /* Posición cuando está cerrado */
-}
-
-.sidebar-header {
-    text-align: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.sidebar-user-icon {
-    font-size: 60px;
-}
-
-.sidebar-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.sidebar-buttons button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: white;
-    color: #333;
-}
-
-.sidebar-buttons .logout-button {
-    background-color: #555;
-    color: white;
-}
-
-/* src/components/HomePage.css */
-/* ... (el resto de tu CSS) */
-
-.search-bar-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border: 1px solid #e6e0d9;
-    border-radius: 20px;
-    background-color: white;
-    width: 300px;
-}
-
-.search-bar-container input {
-    width: 100%;
-    border: none;
-    padding: 8px 15px;
-    outline: none;
-    color: #333;
-    background-color: transparent;
-}
-
-.search-icon {
-    margin-right: 15px;
-    color: #333;
-}
-
-.search-results-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    padding: 0;
-    margin: 5px 0 0 0;
-    z-index: 50;
-    color: #333;
-}
-
-.search-results-dropdown li {
-    padding: 10px 15px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-}
-
-.search-results-dropdown li:hover {
-    background-color: #f0f0f0;
 }

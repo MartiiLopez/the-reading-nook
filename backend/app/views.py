@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import Book, User, Review
 from .serializers import BookSerializer, UserSerializer, ReviewSerializer, RegistrationSerializer
+from rest_framework import generics
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -34,3 +35,26 @@ class UserDetailView(APIView):
     def get(self, request, *args, **kwargs):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+
+class BookReviewsView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        book_id = self.kwargs['book_id']
+        return Review.objects.filter(book__id=book_id)
+    
+class MyReviewsViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Esta vista filtra las reseñas para que solo muestren las del usuario autenticado
+        return Review.objects.filter(user=self.request.user)
+
+class BookReviewsView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        # Filtra las reseñas por el ISBN
+        isbn = self.kwargs['isbn']
+        return Review.objects.filter(book__isbn=isbn)
