@@ -1,11 +1,12 @@
 // src/components/MyReviewsPage.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './MyReviewsPage.css';
-import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
+import { FaStar, FaRegStar, FaStarHalfAlt, FaEye, FaEdit, FaTrash } from 'react-icons/fa'; // Importa los nuevos iconos
 
 // Función para renderizar las estrellas
 const renderStars = (rating) => {
@@ -32,7 +33,6 @@ const MyReviewsPage = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    // Lógica para obtener el nombre de usuario
     const [username, setUsername] = useState('');
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -92,6 +92,11 @@ const MyReviewsPage = () => {
     if (loading) return <div>Cargando...</div>;
     if (error) return <div>{error}</div>;
 
+    const handleDeleteReview = (reviewId) => {
+        // Lógica de eliminación (la implementaremos más tarde)
+        console.log(`Eliminando reseña con ID: ${reviewId}`);
+    };
+
     return (
         <div className="reviews-page-container">
             <Header username={username} handleLogout={handleLogout} />
@@ -105,6 +110,17 @@ const MyReviewsPage = () => {
                                     <h3 className="review-book-title">{review.book.title}</h3>
                                     <p className="review-comment">{review.comment}</p>
                                     <div className="review-rating">{renderStars(review.rating)}</div>
+                                    <div className="review-actions">
+                                        <Link to={`/reviews/${review.id}`}>
+                                            <FaEye className="action-icon view-icon" title="Ver libro" />
+                                        </Link>
+                                        <Link to={`/edit-review/${review.id}`}>
+                                            <FaEdit className="action-icon edit-icon" title="Editar reseña" />
+                                        </Link>
+                                        <div onClick={() => handleDeleteReview(review.id)}>
+                                            <FaTrash className="action-icon delete-icon" title="Eliminar reseña" />
+                                        </div>
+                                    </div>
                                 </div>
                             ))
                         ) : (

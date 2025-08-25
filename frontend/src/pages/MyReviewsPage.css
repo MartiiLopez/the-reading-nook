@@ -66,3 +66,36 @@
     color: #555;
     margin-top: 20px;
 }
+
+/* src/components/MyReviewsPage.css */
+
+/* ... (el resto de tus estilos) */
+
+.review-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.action-icon {
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.view-icon {
+    color: #4d5d71; /* Un color azul-gris */
+}
+
+.edit-icon {
+    color: rgb(9, 255, 0); /* Dorado */
+}
+
+.delete-icon {
+    color: #ff0000; /* Rojo */
+}
+
+.action-icon:hover {
+    opacity: 0.7; /* Opacidad para el efecto hover */
+}

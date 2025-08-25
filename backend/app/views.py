@@ -67,3 +67,9 @@ class ReviewCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         # El serializador ya maneja la creación del libro y la reseña
         serializer.save()
+
+class ReviewDetailView(generics.RetrieveAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'pk'  # Se usará para buscar por la clave primaria (ID)

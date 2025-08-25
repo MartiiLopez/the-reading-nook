@@ -7,6 +7,7 @@ import MainPage from './pages/MainPage';
 import BookDetailPage from './pages/BookDetailPage';
 import ReviewPage from './pages/ReviewPage';
 import MyReviewsPage from './pages/MyReviewsPage';
+import ReviewDetailPage from './pages/ReviewDetailPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/book/:bookId" element={<BookDetailPage />} />
         <Route path="/review/:isbn" element={<ReviewPage />} />
         <Route path="/my-reviews" element={<MyReviewsPage />} />
+        <Route path="/reviews/:reviewId" element={<ReviewDetailPage />} />
       </Routes>
     </Router>
   );

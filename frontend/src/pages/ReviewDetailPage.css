@@ -1,0 +1,132 @@
+/* src/components/ReviewDetailPage.css */
+
+.review-page-container {
+    font-family: 'Times New Roman', serif;
+    background-color: #e6e0d9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-detail-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.review-details-card {
+    margin-bottom: 200px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    width: 600px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Estilos para el encabezado de la tarjeta */
+.card-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-details-title {
+    font-size: 28px;
+    margin: 0;
+    color: #4d5d71;
+}
+
+/* Estilos para el cuerpo de la tarjeta */
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-details-comment {
+    font-size: 18px;
+    line-height: 1.6;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+}
+
+/* Estilos para el pie de la tarjeta */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.review-details-user {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Estilos para las estrellas */
+.rating-container {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+}
+
+.star.filled, .star.half-filled {
+    color: gold;
+}
+
+.star.empty {
+    color: lightgray;
+}
+
+.review-details-rating .star {
+    font-size: 24px;
+}
+
+.review-details-date {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
+
+.footer {
+    background-color: #273043;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons svg {
+    font-size: 24px;
+    cursor: pointer;
+}
