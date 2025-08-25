@@ -1,0 +1,68 @@
+/* src/components/MyReviewsPage.css */
+
+.reviews-page-container {
+    font-family: 'Times New Roman', serif;
+    background-color: #e6e0d9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews-content {
+    flex-grow: 1;
+    padding: 50px;
+    text-align: center;
+}
+
+.reviews-section {
+    margin-bottom: 40px;
+}
+
+.reviews-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.reviews-list-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.review-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: left;
+}
+
+.review-book-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-comment {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.review-rating .rating-container {
+    justify-content: flex-start;
+}
+
+.review-rating .star {
+    color: gold;
+}
+
+.no-reviews-message {
+    font-size: 20px;
+    color: #555;
+    margin-top: 20px;
+}
