@@ -37,6 +37,7 @@ class UserDetailView(APIView):
         return Response(serializer.data)
 
 class BookReviewsView(generics.ListAPIView):
+    permission_classes = [AllowAny]
     serializer_class = ReviewSerializer
 
     def get_queryset(self):

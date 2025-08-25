@@ -1,7 +1,7 @@
 // src/components/HomePage.js
 
 import React, { useState, useEffect } from 'react';
-import './MainPage.css';
+import './HomePage.css';
 import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -37,7 +37,6 @@ const HomePage = () => {
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
 
-    // Lógica de "debouncing" para el buscador
     useEffect(() => {
         if (searchTerm.trim() === '') {
             setSearchResults([]);

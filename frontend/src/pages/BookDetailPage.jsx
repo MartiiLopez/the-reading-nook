@@ -1,13 +1,12 @@
 // src/components/BookDetailPage.js
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './BookDetailPage.css';
 import { FaStar, FaRegStar, FaStarHalfAlt, FaUserCircle } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-// Función para renderizar las estrellas
 const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -33,6 +32,7 @@ const BookDetailPage = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
         const fetchBookDetails = async () => {
@@ -57,19 +57,34 @@ const BookDetailPage = () => {
             }
         };
 
+        const fetchUserDetails = async () => {
+            const token = localStorage.getItem('authToken');
+            if (!token) return;
+            try {
+                const response = await axios.get(
+                    'http://localhost:8000/app/user/', 
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+                setUsername(response.data.username);
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+            }
+        };
+
         if (bookId) {
             fetchBookDetails();
+            fetchUserDetails();
         }
     }, [bookId]);
 
-    const handleReviewButtonClick = () => {
-        const isbn = book.volumeInfo.industryIdentifiers?.find(id => id.type === 'ISBN_13' || id.type === 'ISBN_10')?.identifier;
-        if (isbn) {
-            navigate(`/review/${isbn}`);
-        } else {
-            // Manejar el caso en que el libro no tenga ISBN
-            alert("Este libro no tiene un ISBN válido para hacer una reseña.");
-        }
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('refreshToken');
+        navigate('/');
     };
 
     if (loading) return <div>Cargando...</div>;
@@ -78,17 +93,24 @@ const BookDetailPage = () => {
 
     const synopsis = book.volumeInfo.description;
     const rating = book.volumeInfo.averageRating || 0;
+    const isbn = book.volumeInfo.industryIdentifiers?.find(
+        (id) => id.type === 'ISBN_13' || id.type === 'ISBN_10'
+    )?.identifier;
 
     return (
         <div>
-            <Header />
+            <Header username={username} handleLogout={handleLogout} />
             <div className="book-detail-page">
                 <header className="book-detail-header">
                     <div className="book-info">
                         <div className="left-column">
                             <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                             {renderStars(rating)}
-                            <button onClick={handleReviewButtonClick} className="review-button">DEJA TU RESEÑA</button>
+                            {isbn && (
+                                <Link to={`/review/${isbn}`}>
+                                    <button className="review-button">DEJA TU RESEÑA</button>
+                                </Link>
+                            )}
                         </div>
                         <div className="right-column">
                             <h2>{book.volumeInfo.title}</h2>

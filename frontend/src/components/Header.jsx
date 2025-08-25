@@ -7,7 +7,6 @@ import SearchBar from './SearchBar';
 import '../pages/MainPage.css';
 
 const Header = ({ username, handleLogout }) => {
-    // La lógica del estado del sidebar se mueve aquí
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -20,7 +19,7 @@ const Header = ({ username, handleLogout }) => {
                 <Link to="/main">
                     THE READING NOOK
                 </Link>
-                </div>
+            </div>
             <div className="nav-right">
                 <SearchBar />
                 <div className="profile-menu">
