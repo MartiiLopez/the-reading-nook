@@ -49,8 +49,8 @@ class MyReviewsViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Esta vista filtra las reseñas para que solo muestren las del usuario autenticado
-        return Review.objects.filter(user=self.request.user)
+        queryset = Review.objects.filter(user=self.request.user)
+        return queryset.order_by('-created_at')[:3]
 
 class BookReviewsView(generics.ListAPIView):
     serializer_class = ReviewSerializer
