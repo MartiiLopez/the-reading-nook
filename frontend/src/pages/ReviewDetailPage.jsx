@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BackButton from '../components/BackButton';
 import './ReviewDetailPage.css';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
@@ -56,7 +57,7 @@ const ReviewDetailPage = () => {
         
         const fetchReviewDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/app/reviews/${reviewId}/`);
+                const response = await axios.get(`http://localhost:8000/app/the-review/${reviewId}/`);
                 setReview(response.data);
             } catch (err) {
                 setError("No se pudo cargar la reseña.");
@@ -85,6 +86,7 @@ const ReviewDetailPage = () => {
     return (
         <div>
             <Header username={username} handleLogout={handleLogout} />
+            <BackButton to= { '/my-reviews' } />
             <div className="review-page-container">
                 <main className="review-detail-content">
                     <div className="review-details-card">

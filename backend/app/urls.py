@@ -11,10 +11,9 @@ router.register(r'my-reviews', MyReviewsViewSet, basename='my-reviews') # La rut
 
 urlpatterns = [
     path('register/', RegistrationView.as_view(), name='register'),
-     path('reviews/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'),
     path('user/', UserDetailView.as_view(), name='user_details'),
     path('reviews/<str:isbn>/', BookReviewsView.as_view(), name='book_reviews'),
     path('', include(router.urls)),
     path('reviews/', ReviewCreateView.as_view(), name='review_create'),
-    path('reviews/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'),
+    path('the-review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'),
 ]

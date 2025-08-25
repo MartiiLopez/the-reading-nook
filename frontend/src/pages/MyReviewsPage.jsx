@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BackButton from '../components/BackButton';
 import './MyReviewsPage.css';
 import { FaStar, FaRegStar, FaStarHalfAlt, FaEye, FaEdit, FaTrash } from 'react-icons/fa'; // Importa los nuevos iconos
 
@@ -100,6 +101,7 @@ const MyReviewsPage = () => {
     return (
         <div className="reviews-page-container">
             <Header username={username} handleLogout={handleLogout} />
+            <BackButton to= { '/main' } />
             <main className="reviews-content">
                 <section className="reviews-section">
                     <h2 className="reviews-title">MIS RESEÑAS</h2>

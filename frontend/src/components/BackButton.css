@@ -1,0 +1,23 @@
+/* src/components/BackButton.css */
+
+.back-button-container {
+    position:absolute;
+    top: 70px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-arrow-icon {
+    font-size: 24px;
+    color: #333;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-arrow-icon:hover {
+    background-color: #e0e0e0;
+}

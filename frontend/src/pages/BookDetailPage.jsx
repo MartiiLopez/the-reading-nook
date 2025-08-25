@@ -6,6 +6,7 @@ import './BookDetailPage.css';
 import { FaStar, FaRegStar, FaStarHalfAlt, FaUserCircle } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BackButton from '../components/BackButton';
 
 const renderStars = (rating) => {
     const stars = [];
@@ -100,6 +101,7 @@ const BookDetailPage = () => {
     return (
         <div>
             <Header username={username} handleLogout={handleLogout} />
+            <BackButton to= { '/main' } />
             <div className="book-detail-page">
                 <header className="book-detail-header">
                     <div className="book-info">
