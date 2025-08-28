@@ -2,7 +2,7 @@ body::-webkit-scrollbar {
   display: none; 
 }
 
-body a, button {
+body a, button, input{
     text-decoration: none;
     color: inherit;
     font-family: 'Times New Roman', Times, serif;
@@ -15,4 +15,9 @@ body a, button {
   --text-color: #333;
   --subtitle-color: #555;
   --button-hover-color: #ccc;
+  --white-color: #ffffff;
+  --submit-button-color: #8BCFE9;
+  --submit-button-hover-color: #7ac0e0;
+  --black-color: #000000;
+  --red-color: #ff0000;
 }

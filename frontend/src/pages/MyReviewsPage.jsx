@@ -59,7 +59,7 @@ const MyReviewsPage = () => {
     const handleLogout = () => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('refreshToken');
-        navigate('/login');
+        navigate('/');
     };
 
     useEffect(() => {

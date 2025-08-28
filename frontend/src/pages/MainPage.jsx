@@ -117,7 +117,7 @@ const HomePage = () => {
     const handleLogout = () => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('refreshToken');
-        navigate('/login');
+        navigate('/');
     };
 
     return (

@@ -1,7 +1,5 @@
-/* src/components/LoginPage.css */
-
 .login-page {
-  background-color: #e6e0d9;
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,18 +7,19 @@
 }
 
 .login-box {
-  background-color: #273043;
-  padding: 40px 50px;
+  background-color: var(--primary-color);
+  padding: 70px 60px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
 .login-title {
-  color: white;
+  color: var(--background-color);
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 25px;
@@ -31,20 +30,21 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 
 .login-input {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 4px;
   border: none;
-  background-color: white; /* Color de fondo de los inputs ahora es blanco */
+  background-color: var(--white-color);
   font-size: 16px;
 }
 
 .login-input::placeholder {
-  color: #a0a0a0;
+  color: var(--button-hover-color);
   font-size: 14px;
 }
 
@@ -59,23 +59,79 @@
   transition: background-color 0.3s ease;
 }
 
-/* Colores ajustados para los botones */
+
 .primary-button {
-  background-color: #8BCFE9; /* Botón "Iniciar Sesión" con color azulado claro */
-  color: black;
-   border-radius: 10px; /* Texto del botón ahora es blanco */
+  background-color: var(--submit-button-color); 
+  color: var(--text-color);
+  border-radius: 4px; 
+  width: 70%;
 }
 
 .secondary-button {
-  background-color: #e6e0d9; /* Botón "Cancelar" con color beige claro */
-  color: #333; /* Texto del botón ahora es oscuro */
+  background-color: var(--background-color); 
+  color: var(--text-color);
   margin-top: 15px;
 }
 
 .primary-button:hover {
-  background-color: #639097;
+  background-color: var(--submit-button-hover-color);
 }
 
 .secondary-button:hover {
-  background-color: #d1c8be;
+  background-color: var(--button-hover-color);
+}
+
+.error-message {
+    color: var(--red-color);
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.error-message.visible {
+    opacity: 1;
+}
+
+.login-input.error-input {
+    border: 2px solid var(--red-color); 
+}
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--submit-button-color);
+    color: var(--white-color);
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-weight: bold;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+}
+
+@keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        top: 20px;
+        opacity: 1;
+    }
+    to {
+        top: 0;
+        opacity: 0;
+    }
 }
