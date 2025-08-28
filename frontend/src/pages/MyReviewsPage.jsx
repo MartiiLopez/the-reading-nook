@@ -93,9 +93,27 @@ const MyReviewsPage = () => {
     if (loading) return <div>Cargando...</div>;
     if (error) return <div>{error}</div>;
 
-    const handleDeleteReview = (reviewId) => {
-        // Lógica de eliminación (la implementaremos más tarde)
-        console.log(`Eliminando reseña con ID: ${reviewId}`);
+     const handleDeleteReview = async (reviewId) => {
+        const confirmed = window.confirm("¿Estás seguro de que quieres eliminar esta reseña?");
+        if (confirmed) {
+            const token = localStorage.getItem('authToken');
+            if (!token) return;
+            try {
+                await axios.delete(`http://localhost:8000/app/the-review/${reviewId}/`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                // Actualiza el estado para eliminar la reseña de la UI
+                setReviews(reviews.filter(review => review.id !== reviewId));
+            } catch (error) {
+                console.error("Error al eliminar la reseña:", error);
+                // Si el error es 403, puedes mostrar un mensaje específico
+                if (error.response && error.response.status === 403) {
+                    alert("No tienes permiso para eliminar esta reseña.");
+                } else {
+                    alert("Ocurrió un error al intentar eliminar la reseña.");
+                }
+            }
+        }
     };
 
     return (
