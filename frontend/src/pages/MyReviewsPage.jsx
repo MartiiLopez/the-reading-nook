@@ -71,7 +71,7 @@ const MyReviewsPage = () => {
             }
             try {
                 const response = await axios.get(
-                    'http://localhost:8000/app/my-reviews/', 
+                    'http://localhost:8000/app/all-reviews/', 
                     {
                         headers: {
                             Authorization: `Bearer ${token}`

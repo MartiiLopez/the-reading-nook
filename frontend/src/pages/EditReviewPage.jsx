@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './EditReviewPage.css'; // Nuevo archivo CSS
 import { FaStar } from 'react-icons/fa';
+import BackButton from '../components/BackButton';
 
 // Función para renderizar las estrellas (la misma que en otros componentes)
 const renderStars = (rating, onClick) => {
@@ -72,7 +73,7 @@ const EditReviewPage = () => {
             }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            navigate(`/book/${review.book.id}`); // Redirige a la página del libro
+            navigate(`/my-reviews`); // Redirige a la página del libro
         } catch (error) {
             setSubmitError("Error al actualizar la reseña.");
             console.error(error);
@@ -81,8 +82,6 @@ const EditReviewPage = () => {
     
     const handleCancel = () => {
         if (review) {
-            navigate(`/book/${review.book.id}`);
-        } else {
             navigate('/my-reviews');
         }
     };
@@ -91,33 +90,36 @@ const EditReviewPage = () => {
     if (!review) return <div>Reseña no encontrada.</div>;
 
     return (
-        <div className="edit-review-page-container">
+        <div>
             <Header />
-            <main className="edit-review-content">
-                <form onSubmit={handleUpdate} className="edit-review-form">
-                    <h2>EDITAR RESEÑA</h2>
-                    <div className="form-info">
-                        <h3>Libro: {review.book.title}</h3>
-                        <div className="rating-section">
-                            <p>CALIFICACIÓN *</p>
-                            {renderStars(newRating, (rate) => setNewRating(rate))}
+            <div className="edit-review-page-container">
+                <BackButton to= { '/my-reviews' } />
+                        <h2>EDITAR RESEÑA</h2>
+                <main className="edit-review-content">
+                    <form onSubmit={handleUpdate} className="edit-review-form">
+                        <div className="form-info">
+                            <h3>{review.book.title}</h3>
+                            <div className="rating-section">
+                                <p>CALIFICACIÓN </p>
+                                {renderStars(newRating, (rate) => setNewRating(rate))}
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <p>COMENTARIO</p>
-                        <textarea
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                            placeholder="Edita tu reseña aquí..."
-                        />
-                    </div>
-                    <div className="form-buttons">
-                        <button type="submit" className="save-button">GUARDAR CAMBIOS</button>
-                        <button type="button" onClick={handleCancel} className="cancel-button">CANCELAR</button>
-                    </div>
-                    {submitError && <p className="submit-error">{submitError}</p>}
-                </form>
-            </main>
+                        <div className="form-group">
+                            <p>COMENTARIO</p>
+                            <textarea
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="Edita tu reseña aquí..."
+                            />
+                        </div>
+                        <div className="form-buttons">
+                            <button type="submit" className="save-button">GUARDAR CAMBIOS</button>
+                            <button type="button" onClick={handleCancel} className="cancel-button">CANCELAR</button>
+                        </div>
+                        {submitError && <p className="submit-error">{submitError}</p>}
+                    </form>
+                </main>
+            </div>
             <Footer />
         </div>
     );

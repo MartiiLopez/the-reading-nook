@@ -2,7 +2,8 @@ from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.exceptions import PermissionDenied
 from .models import Book, User, Review
 from .serializers import BookSerializer, UserSerializer, ReviewSerializer, RegistrationSerializer, ReviewCreateSerializer
 from rest_framework import generics
@@ -68,8 +69,25 @@ class ReviewCreateView(generics.CreateAPIView):
         # El serializador ya maneja la creación del libro y la reseña
         serializer.save()
 
-class ReviewDetailView(generics.RetrieveAPIView):
+class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [AllowAny]
-    lookup_field = 'pk'  # Se usará para buscar por la clave primaria (ID)
+    permission_classes = [IsAuthenticatedOrReadOnly] # Permite GET para cualquiera, pero PUT/DELETE solo para autenticados
+    lookup_field = 'pk'
+
+    def get_queryset(self):
+        # Esta vista es pública, por lo que no filtramos el queryset.
+        # Dejamos que el usuario pueda ver cualquier reseña.
+        return Review.objects.all()
+
+    def perform_update(self, serializer):
+        # Esta lógica de seguridad es crucial
+        if serializer.instance.user != self.request.user:
+            raise PermissionDenied("No tienes permiso para editar esta reseña.")
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        # Esta lógica de seguridad es crucial
+        if instance.user != self.request.user:
+            raise PermissionDenied("No tienes permiso para eliminar esta reseña.")
+        instance.delete()

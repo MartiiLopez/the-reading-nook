@@ -6,6 +6,7 @@ import './ReviewPage.css';
 import { FaStar, FaRegStar, FaUserCircle } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BackButton from '../components/BackButton';
 
 // Función para renderizar estrellas (la misma que en otros componentes)
 const renderStars = (rating, onClick) => {
@@ -107,16 +108,15 @@ const ReviewPage = () => {
         <div>
             <Header />
             <div className="review-page-container">
-                <header className="review-form-header">
+                <BackButton to= { `/book/${book.id}` } />
                     <h2>DEJA TU RESEÑA</h2>
-                </header>
                 <form onSubmit={handleReviewSubmit} className="review-form">
                     <div className="form-info">
-                        <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                         <div className="form-details">
                             <h3>{book.volumeInfo.title}</h3>
                             <div className="rating-section">
-                                <p>CALIFICACIÓN *</p>
+                        <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
+                                <p>CALIFICACIÓN </p>
                                 {renderStars(newRating, (rate) => setNewRating(rate))}
                             </div>
                         </div>

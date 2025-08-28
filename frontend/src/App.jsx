@@ -8,6 +8,7 @@ import BookDetailPage from './pages/BookDetailPage';
 import ReviewPage from './pages/ReviewPage';
 import MyReviewsPage from './pages/MyReviewsPage';
 import ReviewDetailPage from './pages/ReviewDetailPage';
+import EditReviewPage from './pages/EditReviewPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/review/:isbn" element={<ReviewPage />} />
         <Route path="/my-reviews" element={<MyReviewsPage />} />
         <Route path="/reviews/:reviewId" element={<ReviewDetailPage />} />
+        <Route path="/edit-review/:reviewId" element={<EditReviewPage />} />
       </Routes>
     </Router>
   );

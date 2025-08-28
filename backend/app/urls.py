@@ -2,7 +2,7 @@
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import BookViewSet, UserViewSet, MyReviewsViewSet, RegistrationView, UserDetailView, BookReviewsView, ReviewCreateView, ReviewDetailView
+from .views import BookViewSet, UserViewSet, ReviewViewSet, MyReviewsViewSet, RegistrationView, UserDetailView, BookReviewsView, ReviewCreateView, ReviewDetailView
 
 router = DefaultRouter()
 router.register(r'books', BookViewSet)
@@ -16,4 +16,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('reviews/', ReviewCreateView.as_view(), name='review_create'),
     path('the-review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'),
+    path('all-reviews/', ReviewViewSet.as_view({'get': 'list'}), name='all_reviews'),  # Nueva ruta para todas las reseñas
 ]
