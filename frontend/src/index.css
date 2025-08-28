@@ -1,8 +1,18 @@
 body::-webkit-scrollbar {
-  display: none; /* Oculta la barra de desplazamiento */
+  display: none; 
 }
 
-body a{
+body a, button {
     text-decoration: none;
     color: inherit;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root{
+  --background-color: #e6e0d9;
+  --primary-color: #273043;
+  --secondary-color: #e6e0d9;
+  --text-color: #333;
+  --subtitle-color: #555;
+  --button-hover-color: #ccc;
 }
