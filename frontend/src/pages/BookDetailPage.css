@@ -1,22 +1,18 @@
-/* src/components/BookDetailPage.css */
-
-/* Estilos generales de la página */
 .book-detail-page {
     font-family: 'Times New Roman', serif;
-    background-color: #e6e0d9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     min-height: 100vh;
     padding: 50px;
     text-align: center;
 }
 
-/* Encabezado con información del libro */
 .book-detail-header {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding-bottom: 40px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--background-color);
     margin-bottom: 40px;
 }
 
@@ -32,11 +28,12 @@
 .left-column {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Clave: alinea los elementos a la izquierda */
+    align-items: flex-start;
     gap: 10px;
 }
 
 .left-column img {
+    margin-top: 30px;
     max-width: 200px;
     height: auto;
     border-radius: 8px;
@@ -58,7 +55,7 @@
 .synopsis {
     font-size: 16px;
     line-height: 1.6;
-    color: #444;
+    color: var(--text-color);
 }
 
 .rating-and-button {
@@ -69,8 +66,8 @@
 }
 
 .review-button {
-    background-color: #4d5d71;
-    color: white;
+    background-color: var(--submit-button-color);
+    color: var(--text-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -78,21 +75,19 @@
     font-size: 16px;
 }
 
-/* Estilos para las estrellas */
 .rating-container {
     display: flex;
     gap: 3px;
 }
 
 .star.filled, .star.half-filled {
-    color: gold;
+    color: var(--yellow-color);
 }
 
 .star.empty {
-    color: lightgray;
+    color: var(--text-color);
 }
 
-/* Contenido principal de la página */
 .book-detail-content {
     max-width: 800px;
     margin: 0 auto;
@@ -105,7 +100,6 @@
     letter-spacing: 1px;
 }
 
-/* Estilos para la lista de reseñas */
 .reviews-list {
     display: flex;
     flex-direction: row;
@@ -115,7 +109,7 @@
 }
 
 .review-card {
-    background-color: white;
+    background-color: var(--white-color);
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -128,12 +122,12 @@
 
 .review-comment {
     font-style: italic;
-    color: #555;
+    color: var(--button-hover-color);
     margin-top: 5px;
 }
 
 .no-reviews {
     font-style: italic;
-    color: #777;
+    color: var(--subtitle-color);
     text-align: center;
 }

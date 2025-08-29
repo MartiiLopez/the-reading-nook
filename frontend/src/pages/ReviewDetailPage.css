@@ -97,7 +97,7 @@
 }
 
 .star.empty {
-    color: lightgray;
+    color: var(--text-color);
 }
 
 .review-details-rating .star {

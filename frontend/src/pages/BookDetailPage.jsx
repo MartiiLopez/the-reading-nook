@@ -1,9 +1,8 @@
-// src/components/BookDetailPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './BookDetailPage.css';
-import { FaStar, FaRegStar, FaStarHalfAlt, FaUserCircle } from 'react-icons/fa';
+import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BackButton from '../components/BackButton';
@@ -51,7 +50,6 @@ const BookDetailPage = () => {
                     setReviews(reviewsResponse.data);
                 }
             } catch (err) {
-                setError("No se pudo cargar la información del libro.");
                 console.error(err);
             } finally {
                 setLoading(false);

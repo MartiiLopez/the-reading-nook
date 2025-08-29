@@ -237,7 +237,7 @@
 }
 
 .star.empty {
-    color: var(--button-hover-color);
+    color: var(--text-color);
 }
 
 .no-reviews-message {
