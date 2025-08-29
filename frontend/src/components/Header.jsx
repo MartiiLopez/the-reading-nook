@@ -1,5 +1,3 @@
-// src/components/Header.js
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';

@@ -1,5 +1,3 @@
-// src/components/HomePage.js
-
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import { FaRegStar, FaStarHalfAlt, FaStar } from 'react-icons/fa';
