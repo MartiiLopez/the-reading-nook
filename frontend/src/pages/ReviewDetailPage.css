@@ -1,9 +1,7 @@
-/* src/components/ReviewDetailPage.css */
-
 .review-page-container {
     font-family: 'Times New Roman', serif;
-    background-color: #e6e0d9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +17,7 @@
 
 .review-details-card {
     margin-bottom: 200px;
-    background-color: white;
+    background-color: var(--white-color);
     border-radius: 8px;
     padding: 40px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -31,7 +29,6 @@
     gap: 20px;
 }
 
-/* Estilos para el encabezado de la tarjeta */
 .card-header {
     text-align: center;
     display: flex;
@@ -43,10 +40,9 @@
 .review-details-title {
     font-size: 28px;
     margin: 0;
-    color: #4d5d71;
+    color: var(--text-color);
 }
 
-/* Estilos para el cuerpo de la tarjeta */
 .card-body {
     flex-grow: 1;
     display: flex;
@@ -58,17 +54,16 @@
     font-size: 18px;
     line-height: 1.6;
     font-style: italic;
-    color: #555;
+    color: var(--text-color);
     text-align: center;
 }
 
-/* Estilos para el pie de la tarjeta */
 .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--background-color);
     padding-top: 20px;
 }
 
@@ -85,7 +80,6 @@
     margin: 0;
 }
 
-/* Estilos para las estrellas */
 .rating-container {
     display: flex;
     gap: 3px;
@@ -93,7 +87,7 @@
 }
 
 .star.filled, .star.half-filled {
-    color: gold;
+    color: var(--yellow-color);
 }
 
 .star.empty {
@@ -105,28 +99,8 @@
 }
 
 .review-details-date {
+    font-style: italic;
     font-size: 14px;
-    color: #888;
+    color: var(--text-color);
     margin: 0;
-}
-
-.footer {
-    background-color: #273043;
-    color: white;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.social-icons {
-    display: flex;
-    gap: 20px;
-}
-
-.social-icons svg {
-    font-size: 24px;
-    cursor: pointer;
 }

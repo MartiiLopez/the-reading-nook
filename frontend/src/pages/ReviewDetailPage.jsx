@@ -1,5 +1,3 @@
-// src/components/ReviewDetailPage.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -9,7 +7,6 @@ import BackButton from '../components/BackButton';
 import './ReviewDetailPage.css';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
-// Función para renderizar las estrellas
 const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -92,7 +89,6 @@ const ReviewDetailPage = () => {
                     <div className="review-details-card">
                         <div className="card-header">
                             <h2 className="review-details-title">{book.title}</h2>
-                            {/* Se mueve la calificación aquí */}
                             <div className="review-details-rating">{renderStars(review.rating)}</div>
                         </div>
                         <div className="card-body">
