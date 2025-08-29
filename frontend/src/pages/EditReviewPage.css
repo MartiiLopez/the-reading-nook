@@ -1,9 +1,7 @@
-/* src/components/EditReviewPage.css */
-
 .edit-review-page-container {
     font-family: 'Times New Roman', serif;
-    background-color: #e6e0d9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -122,7 +120,7 @@
 }
 
 .submit-error {
-    color: #cc3300;
+    color: var(--red-color);
     text-align: center;
     margin-top: 10px;
 }

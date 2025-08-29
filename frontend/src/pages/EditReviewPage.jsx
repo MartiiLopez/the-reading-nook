@@ -1,4 +1,3 @@
-// src/components/EditReviewPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,7 +7,6 @@ import './EditReviewPage.css'; // Nuevo archivo CSS
 import { FaStar } from 'react-icons/fa';
 import BackButton from '../components/BackButton';
 
-// Función para renderizar las estrellas (la misma que en otros componentes)
 const renderStars = (rating, onClick) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -73,7 +71,7 @@ const EditReviewPage = () => {
             }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            navigate(`/my-reviews`); // Redirige a la página del libro
+            navigate(`/my-reviews`);
         } catch (error) {
             setSubmitError("Error al actualizar la reseña.");
             console.error(error);
