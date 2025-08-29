@@ -57,7 +57,6 @@ class BookReviewsView(generics.ListAPIView):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        # Filtra las reseñas por el ISBN
         isbn = self.kwargs['isbn']
         return Review.objects.filter(book__isbn=isbn)
 
@@ -66,28 +65,23 @@ class ReviewCreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     
     def perform_create(self, serializer):
-        # El serializador ya maneja la creación del libro y la reseña
         serializer.save()
 
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly] # Permite GET para cualquiera, pero PUT/DELETE solo para autenticados
+    permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_field = 'pk'
 
     def get_queryset(self):
-        # Esta vista es pública, por lo que no filtramos el queryset.
-        # Dejamos que el usuario pueda ver cualquier reseña.
         return Review.objects.all()
 
     def perform_update(self, serializer):
-        # Esta lógica de seguridad es crucial
         if serializer.instance.user != self.request.user:
             raise PermissionDenied("No tienes permiso para editar esta reseña.")
         serializer.save()
 
     def perform_destroy(self, instance):
-        # Esta lógica de seguridad es crucial
         if instance.user != self.request.user:
             raise PermissionDenied("No tienes permiso para eliminar esta reseña.")
         instance.delete()

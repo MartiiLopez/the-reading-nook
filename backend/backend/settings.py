@@ -61,12 +61,12 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100),  # El token de acceso expira rápido
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),   # El token de refresco dura más
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), 
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'ALGORITHM': 'HS256',
-    'SIGNING_KEY': 'django-insecure-j(t&3x2t^2vult&pp*^e(r@1w(x1fk6+$ukpfe0y%66xjn29b&', # ¡Importante! Usa tu SECRET_KEY aquí
+    'SIGNING_KEY': 'django-insecure-j(t&3x2t^2vult&pp*^e(r@1w(x1fk6+$ukpfe0y%66xjn29b&',
     'VERIFYING_KEY': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
     'USER_ID_FIELD': 'id',

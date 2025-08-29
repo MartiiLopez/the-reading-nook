@@ -1,5 +1,3 @@
-# app/urls.py
-
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import BookViewSet, UserViewSet, ReviewViewSet, MyReviewsViewSet, RegistrationView, UserDetailView, BookReviewsView, ReviewCreateView, ReviewDetailView
@@ -7,7 +5,7 @@ from .views import BookViewSet, UserViewSet, ReviewViewSet, MyReviewsViewSet, Re
 router = DefaultRouter()
 router.register(r'books', BookViewSet)
 router.register(r'users', UserViewSet)
-router.register(r'my-reviews', MyReviewsViewSet, basename='my-reviews') # La ruta para las reseñas del usuario
+router.register(r'my-reviews', MyReviewsViewSet, basename='my-reviews')
 
 urlpatterns = [
     path('register/', RegistrationView.as_view(), name='register'),
@@ -16,5 +14,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('reviews/', ReviewCreateView.as_view(), name='review_create'),
     path('the-review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'),
-    path('all-reviews/', ReviewViewSet.as_view({'get': 'list'}), name='all_reviews'),  # Nueva ruta para todas las reseñas
+    path('all-reviews/', ReviewViewSet.as_view({'get': 'list'}), name='all_reviews'), 
 ]
