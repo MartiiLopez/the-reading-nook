@@ -1,9 +1,7 @@
-/* src/components/MyReviewsPage.css */
-
 .reviews-page-container {
     font-family: 'Times New Roman', serif;
-    background-color: #e6e0d9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -33,7 +31,7 @@
 }
 
 .review-card {
-    background-color: white;
+    background-color: var(--white-color);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,7 +47,7 @@
 
 .review-comment {
     font-style: italic;
-    color: #555;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
@@ -58,18 +56,14 @@
 }
 
 .review-rating .star {
-    color: gold;
+    color: var(--yellow-color);
 }
 
 .no-reviews-message {
     font-size: 20px;
-    color: #555;
+    color: var(--text-color);
     margin-top: 20px;
 }
-
-/* src/components/MyReviewsPage.css */
-
-/* ... (el resto de tus estilos) */
 
 .review-actions {
     display: flex;
@@ -85,17 +79,17 @@
 }
 
 .view-icon {
-    color: #4d5d71; /* Un color azul-gris */
+    color: var(--text-color); 
 }
 
 .edit-icon {
-    color: rgb(9, 255, 0); /* Dorado */
+    color: var(--green-color); 
 }
 
 .delete-icon {
-    color: #ff0000; /* Rojo */
+    color: var(--red-color);
 }
 
 .action-icon:hover {
-    opacity: 0.7; /* Opacidad para el efecto hover */
+    opacity: 0.7; 
 }

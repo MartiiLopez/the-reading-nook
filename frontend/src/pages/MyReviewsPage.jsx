@@ -1,5 +1,3 @@
-// src/components/MyReviewsPage.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -7,9 +5,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BackButton from '../components/BackButton';
 import './MyReviewsPage.css';
-import { FaStar, FaRegStar, FaStarHalfAlt, FaEye, FaEdit, FaTrash } from 'react-icons/fa'; // Importa los nuevos iconos
+import { FaStar, FaRegStar, FaStarHalfAlt, FaEye, FaEdit, FaTrash } from 'react-icons/fa'; 
 
-// Función para renderizar las estrellas
 const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -102,11 +99,9 @@ const MyReviewsPage = () => {
                 await axios.delete(`http://localhost:8000/app/the-review/${reviewId}/`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-                // Actualiza el estado para eliminar la reseña de la UI
                 setReviews(reviews.filter(review => review.id !== reviewId));
             } catch (error) {
                 console.error("Error al eliminar la reseña:", error);
-                // Si el error es 403, puedes mostrar un mensaje específico
                 if (error.response && error.response.status === 403) {
                     alert("No tienes permiso para eliminar esta reseña.");
                 } else {
