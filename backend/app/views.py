@@ -17,8 +17,11 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
 
 class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Review.objects.filter(user=user)
 
 class RegistrationView(APIView):
     permission_classes = [AllowAny]
