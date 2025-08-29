@@ -53,7 +53,8 @@
 .rating-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+
 }
 
 .rating-section p {
@@ -103,12 +104,12 @@
 }
 
 .save-button {
-    background-color: #4d5d71;
-    color: white;
+    background-color: var(--submit-button-color);
+    color: var(--text-color);
 }
 
 .save-button:hover {
-    background-color: #3f4757;
+    background-color: var(--submit-button-hover-color);
 }
 
 .cancel-button {

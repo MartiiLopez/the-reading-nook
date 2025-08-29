@@ -1,14 +1,12 @@
-// src/components/ReviewPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ReviewPage.css';
-import { FaStar, FaRegStar, FaUserCircle } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BackButton from '../components/BackButton';
 
-// Función para renderizar estrellas (la misma que en otros componentes)
 const renderStars = (rating, onClick) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -24,7 +22,7 @@ const renderStars = (rating, onClick) => {
 };
 
 const ReviewPage = () => {
-    const { isbn } = useParams(); // Ahora usamos 'isbn'
+    const { isbn } = useParams(); 
     const navigate = useNavigate();
     const [book, setBook] = useState(null);
     const [newRating, setNewRating] = useState(0);
@@ -35,12 +33,10 @@ const ReviewPage = () => {
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
-                // Buscamos el libro por su ISBN
                 const bookResponse = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
                 if (bookResponse.data.items && bookResponse.data.items.length > 0) {
                     setBook(bookResponse.data.items[0]);
                 } else {
-                    // Manejar el caso si el libro no se encuentra
                     setSubmitError("Libro no encontrado con este ISBN.");
                 }
             } catch (err) {
@@ -68,7 +64,7 @@ const ReviewPage = () => {
         }
 
         let publishedDate = book.volumeInfo.publishedDate || '2000-01-01';
-            if (publishedDate.length === 4) { // If it's only the year
+            if (publishedDate.length === 4) { 
                 publishedDate = `${publishedDate}-01-01`;
         }
                 
@@ -90,7 +86,7 @@ const ReviewPage = () => {
                     }
                 }
             );
-            navigate(`/book/${book.id}`); // Redirige de vuelta a la página del libro
+            navigate(`/book/${book.id}`); 
         } catch (error) {
             setSubmitError("Error al enviar la reseña. Inténtalo de nuevo.");
             console.error("Error submitting review:", error);
@@ -115,7 +111,6 @@ const ReviewPage = () => {
                         <div className="form-details">
                             <h3>{book.volumeInfo.title}</h3>
                             <div className="rating-section">
-                        <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
                                 <p>CALIFICACIÓN </p>
                                 {renderStars(newRating, (rate) => setNewRating(rate))}
                             </div>
